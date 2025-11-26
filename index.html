@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOVA DEALS</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent1:#4a00e0;
+  --accent2:#8e2de2;
+  --accent3:#3fe0c5;
+  --accent4:#00ffb0;
+  --violet:violet;
+  --text:#fff;
+  --bg-dark:#0f0f17;
+  --cardBG:rgba(255,255,255,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  font-family:'Poppins',sans-serif;
+  background: linear-gradient(-45deg,var(--accent1),var(--accent2),var(--accent3),var(--accent4));
+  background-size:400% 400%;
+  animation:gradientBG 15s ease infinite;
+  color:var(--text);
+  overflow-x:hidden;
+  transition: background .4s, color .3s;
+}
+@keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+body.light-mode{ background:linear-gradient(135deg,#f6f9ff,#eaf7ff,#e0fff4); color:#111; --cardBG:rgba(0,0,0,0.06);}
+
+/* Loading Screen */
+#loadingScreen{
+  position:fixed; inset:0; z-index:9999;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--bg-dark); color:#fff; font-weight:700; font-size:32px;
+}
+#loadingLogo{ animation:logoPop 1.2s ease infinite; }
+@keyframes logoPop{0%{transform:scale(0.98);opacity:0.8}50%{transform:scale(1.02);opacity:1}100%{transform:scale(0.98);opacity:0.9}}
+
+/* Landing Page */
+#landingPage{
+  position:fixed; inset:0; z-index:9998;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(-45deg,var(--accent1),var(--accent2),var(--accent3),var(--accent4));
+  background-size:400% 400%; animation:gradientBG 15s ease infinite;
+}
+.landingCenter{text-align:center;color:var(--text);animation:fadeSlide 1s ease;padding:20px;}
+.landingCenter h1{font-size:42px;font-weight:800;margin-bottom:12px;text-shadow:0 4px 20px rgba(0,0,0,0.25);}
+.landingCenter p{font-size:18px;margin-bottom:20px;opacity:0.95;}
+#enterBtn{
+  padding:12px 30px;border-radius:999px;border:none;font-weight:700;
+  background:#fff;color:var(--accent1);cursor:pointer;font-size:16px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.15); transition:transform .18s, box-shadow .18s;
+}
+#enterBtn:hover{transform:scale(1.04);box-shadow:0 12px 40px rgba(0,0,0,0.18);}
+@keyframes fadeSlide{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:translateY(0)}}
+
+/* Header */
+header{
+  width:calc(100% - 24px); max-width:980px;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 18px; border-radius:12px; backdrop-filter:blur(8px);
+  background: rgba(0,0,0,0.18); box-shadow:0 6px 18px rgba(0,0,0,0.18);
+  margin:12px auto;
+}
+body.light-mode header{ background: rgba(255,255,255,0.7); }
+.header-left h1{ font-size:22px; font-weight:800; letter-spacing:0.6px; }
+.header-left .slogan{ font-size:12px; opacity:0.9; }
+.header-right{ display:flex; align-items:center; gap:10px; font-size:13px; opacity:0.95; }
+.mode-toggle{ padding:8px 10px;border-radius:10px;border:none;background:rgba(255,255,255,0.08);cursor:pointer;}
+
+/* Navigation */
+.pages-nav{ display:flex; justify-content:center; gap:8px; margin:12px 0; }
+.navBtn{ padding:8px 18px;border-radius:999px;border:none;background:rgba(255,255,255,0.08);color:inherit;cursor:pointer;transition:transform .18s, box-shadow .18s, background .2s;}
+.navBtn:hover{ transform:scale(1.03); box-shadow:0 8px 24px rgba(0,0,0,0.15);}
+.navBtn.active{ background: linear-gradient(90deg,var(--accent1),var(--accent2)); color:#fff; box-shadow:0 12px 30px rgba(0,0,0,0.25);}
+
+/* Cards */
+.card{ width:100%; max-width:720px; background:var(--cardBG); padding:16px; border-radius:14px; backdrop-filter:blur(12px); transition:transform .28s ease, box-shadow .28s ease; margin:12px auto;}
+.card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,0.28);}
+
+/* QR */
+.qr-card{ display:flex; flex-direction:column; align-items:center; gap:12px; padding:18px; border-radius:14px; background:var(--cardBG); margin:12px auto; }
+#qrBox{ width:180px; height:180px; border-radius:50%; overflow:hidden; border:4px solid var(--violet); display:flex; align-items:center; justify-content:center; position:relative; animation:qrPulse 3s infinite; }
+@keyframes qrPulse{0%{box-shadow:0 0 8px rgba(238,130,238,0.25)}50%{box-shadow:0 0 26px rgba(238,130,238,0.18)}100%{box-shadow:0 0 8px rgba(238,130,238,0.25)}}
+
+/* Instagram & Copy Buttons */
+.inst-btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 22px; border-radius:999px; border:none; cursor:pointer;
+background: linear-gradient(135deg,var(--accent1),var(--accent2)); color:#fff; font-weight:700; box-shadow:0 8px 30px rgba(0,0,0,0.22); position:relative; overflow:hidden; transition:transform .18s ease;}
+.inst-btn svg{ width:18px;height:18px;}
+.copy-btn{ padding:8px 14px; border-radius:10px; border:none; background:rgba(255,255,255,0.06); color:inherit; cursor:pointer;}
+
+/* Back to Top */
+#backToTop{ position:fixed; right:20px; bottom:22px; padding:10px 12px; border-radius:999px; background:var(--violet); color:#fff; border:none; cursor:pointer; box-shadow:0 8px 30px rgba(0,0,0,0.2); opacity:0; transform:translateY(8px); transition:opacity .25s, transform .25s;}
+#backToTop.show{ opacity:1; transform:translateY(0);}
+
+/* Scroll Indicator */
+#scrollBar{ position:fixed; left:0; top:0; height:4px; background: linear-gradient(90deg,var(--accent1),var(--accent2)); width:0%; z-index:1200; transition:width .18s ease;}
+
+/* Footer */
+footer{ text-align:center; padding:12px; color:inherit; opacity:0.9; font-size:13px; margin:12px auto;}
+
+/* Clock / Date */
+.clockBox{ display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:700;}
+.clock{ font-size:18px; letter-spacing:1px;}
+.date{ font-size:13px; opacity:0.85;}
+</style>
+</head>
+<body>
+
+<!-- Loading -->
+<div id="loadingScreen"><div id="loadingLogo">NOVA DEALS</div></div>
+
+<!-- Landing -->
+<div id="landingPage" style="display:none">
+  <div class="landingCenter">
+    <h1>NOVA DEALS</h1>
+    <p>TURN YOUR IDEAS INTO DEALS</p>
+    <button id="enterBtn">ENTER</button>
+  </div>
+</div>
+
+<!-- Scroll Indicator -->
+<div id="scrollBar"></div>
+
+<!-- Content -->
+<div id="content" style="display:none;">
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <h1>NOVA DEALS</h1>
+      <div class="slogan">TURN YOUR IDEAS INTO DEALS</div>
+    </div>
+    <div class="header-right">
+      <div class="clockBox">
+        <div id="clock" class="clock">--:--:--</div>
+        <div id="date" class="date">-- -- ----</div>
+      </div>
+      <button id="modeToggle" class="mode-toggle">🌙</button>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <div class="pages-nav">
+    <button class="navBtn active" data-page="1">Services</button>
+    <button class="navBtn" data-page="2">Offers</button>
+    <button class="navBtn" data-page="3">Project Paths</button>
+  </div>
+
+  <!-- Pages -->
+  <section id="page1" class="page" style="display:block;">
+    <div class="card">
+      <h2>Our Services</h2>
+      <ul>
+        <li>Logo Designs - $2</li>
+        <li>Instagram Followers - From $1.5</li>
+        <li>TikTok Followers - From $2</li>
+        <li>ChatGPT Access - From $5</li>
+        <li>Netflix Accounts - From $6</li>
+        <li>Canva Pro Lifetime - $2</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="page2" class="page" style="display:none;">
+    <div class="card">
+      <h2>Offers</h2>
+      <p>Ready-to-start project paths with clear plan for fastest results.</p>
+    </div>
+  </section>
+
+  <section id="page3" class="page" style="display:none;">
+    <div class="card qr-card">
+      <div id="qrBox"></div>
+      <div style="margin-top:10px; display:flex; gap:10px;">
+        <button id="instBtn" class="inst-btn">Instagram</button>
+        <button id="copyBtn" class="copy-btn">Copy Link</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2025 NOVA DEALS</footer>
+</div>
+
+<button id="backToTop" title="Back to top">↑</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+// ---------- Loading ----------
+window.addEventListener('load',()=> {
+  setTimeout(()=>{
+    document.getElementById('loadingScreen').style.display='none';
+    document.getElementById('landingPage').style.display='flex';
+    setTimeout(()=>{
+      document.getElementById('landingPage').style.display='none';
+      document.getElementById('content').style.display='block';
+    },1500);
+  },1500);
+});
+
+// ---------- QR ----------
+new QRCode(document.getElementById("qrBox"), { text:"https://www.instagram.com/anas__.elk", width:180, height:180, colorDark:"#000", colorLight:"#fff", correctLevel:QRCode.CorrectLevel.H });
+
+// ---------- Dark/Light ----------
+const modeToggle=document.getElementById("modeToggle");
+modeToggle.addEventListener("click",()=>{
+  document.body.classList.toggle("light-mode");
+  modeToggle.textContent=document.body.classList.contains("light-mode")?"☀️":"🌙";
+  localStorage.setItem("elite_mode",document.body.classList.contains("light-mode")?"light":"dark");
+});
+if(localStorage.getItem("elite_mode")==="light"){document.body.classList.add("light-mode");modeToggle.textContent="☀️";}
+
+// ---------- Clock ----------
+function updateClock(){ const now=new Date(); const h=String(now.getHours()).padStart(2,'0'); const m=String(now.getMinutes()).padStart(2,'0'); const s=String(now.getSeconds()).padStart(2,'0'); document.getElementById("clock").textContent=`${h}:${m}:${s}`; document.getElementById("date").textContent=now.toLocaleDateString(); }
+setInterval(updateClock,1000);updateClock();
+
+// ---------- Copy ----------
+document.getElementById("copyBtn").addEventListener("click",async()=>{ try{ await navigator.clipboard.writeText("https://www.instagram.com/anas__.elk"); alert("Link copied!"); } catch(e){ alert("Copy failed."); }});
+
+// ---------- Navigation ----------
+const navBtns=document.querySelectorAll(".navBtn");
+const pages=document.querySelectorAll(".page");
+navBtns.forEach(btn=>{
+  btn.addEventListener("click",()=> {
+    navBtns.forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    pages.forEach(p=>p.style.display="none");
+    document.getElementById("page"+btn.dataset.page).style.display="block";
+  });
+});
+
+// ---------- Scroll Indicator ----------
+window.addEventListener('scroll',()=>{
+  const scrollTop=window.scrollY, docHeight=document.body.scrollHeight-window.innerHeight;
+  const scrolled=(scrollTop/docHeight)*100;
+  document.getElementById("scrollBar").style.width=scrolled+"%";
+  document.getElementById("backToTop").classList.toggle("show",scrollTop>150);
+});
+document.getElementById("backToTop").addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"});});
+
+// ---------- Landing Enter ----------
+document.getElementById("enterBtn").addEventListener("click",()=>{
+  document.getElementById("landingPage").style.display='none';
+  document.getElementById("content").style.display='block';
+});
+</script>
+</body>
+  </html>
